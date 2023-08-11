@@ -30,51 +30,52 @@ exports.userpost = async(req, res)=>{
 
 //  get all user
 exports.getUsers = async (req, res)=>{
-    const search = req.query.search || "";
-    const status = req.query.status || "";
-    const gender = req.query.gender || "";
-    const sort = req.query.sort || "";
-    const page = req.query.page || 1;
-    const ITEM_PER_PAGE = req.query.items || 4;
+    // const search = req.query.search || "";
+    // const status = req.query.status || "";
+    // const gender = req.query.gender || "";
+    // const sort = req.query.sort || "";
+    // const page = req.query.page || 1;
+    // const ITEM_PER_PAGE = req.query.items || 4;
 
-    const query = {
-        firstname: {$regex: search, $options:"i"}
-    }
+    // const query = {
+    //     firstname: {$regex: search, $options:"i"}
+    // }
 
-    if(status !== "All" ){
-        query.status = status   
-    }
+    // if(status !== "All" ){
+    //     query.status = status   
+    // }
 
-    if(gender !== "All" ){
-        query.gender = gender   
-    }
+    // if(gender !== "All" ){
+    //     query.gender = gender   
+    // }
 
     try{
-        const skip = (page - 1) * ITEM_PER_PAGE;
+        // const skip = (page - 1) * ITEM_PER_PAGE;
 
         // count Document
-        const count = await users.countDocuments(query);
+        // const count = await users.countDocuments(query);
 
-        const userData = await users.find( query)
-        .sort({datecreated:sort == "new"? -1 : 1})
-        .limit(ITEM_PER_PAGE)
-        .skip(skip)
+        const userData = await users.find();
+        // .sort({datecreated:sort == "new"? -1 : 1})
+        // .limit(ITEM_PER_PAGE)
+        // .skip(skip)
 
-        const pageCount = Math.ceil(count/ITEM_PER_PAGE); // 8/4 = 2
+        // const pageCount = Math.ceil(count/ITEM_PER_PAGE); // 8/4 = 2
+        res.status(200).json(userData);
 
-
-
-        res.status(200).json({
-            pagination:{
-                count: pageCount
-            },
-            userData
-        });
+        // res.status(200).json({
+        //     pagination:{
+        //         count: pageCount
+        //     },
+        //     userData
+        // });
     }catch(err){
         res.status(400).json(err);
         console.log("catch block error");
     }
 }
+
+// http://localhost:5005/user/getAllUser?search=&status=All&gender=All&sort=new
 
 // get single user
 exports.getSingleuser = async(req, res) => {
