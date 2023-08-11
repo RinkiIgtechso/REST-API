@@ -9,8 +9,8 @@
 
 <code>https://tiny-rose-bison-ring.cyclic.app</code>
 
-- >>>> GET >>>> <code>https://tiny-rose-bison-ring.cyclic.app/user/getAllUser</code>
-- >>>> GET_SINGLE_USER <code>https://tiny-rose-bison-ring.cyclic.app/user/singleuser/:id</code>
-- >>>> POST >>>> <code>https://tiny-rose-bison-ring.cyclic.app/user/register</code>
-- >>>> UPDATE >>>> <code>https://tiny-rose-bison-ring.cyclic.app/user/updateuser/:id</code>
-- >>>> DELETE >>>> <code>https://tiny-rose-bison-ring.cyclic.app/user/deleteuser/:id</code>
+- > GET <code>https://tiny-rose-bison-ring.cyclic.app/user/getAllUser</code>
+- > GET_SINGLE_USER <code>https://tiny-rose-bison-ring.cyclic.app/user/singleuser/:id</code>
+- > POST <code>https://tiny-rose-bison-ring.cyclic.app/user/register</code>
+- > UPDATE <code>https://tiny-rose-bison-ring.cyclic.app/user/updateuser/:id</code>
+- > DELETE <code>https://tiny-rose-bison-ring.cyclic.app/user/deleteuser/:id</code>

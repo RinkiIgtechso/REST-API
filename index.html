@@ -1,0 +1,156 @@
+<html>
+    <head>
+        <title>CRUD OPERATION</title>
+        <style>
+            form{
+                width:30%;
+                margin:auto;
+                border-radius: 10px;
+                padding: 2.4rem 2rem;
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+            }
+            input{
+                width:100%;
+                padding:14px 12px;
+                border-radius: 10px;
+                border:1px solid #0071bd;
+                outline:none;
+                font-size:1.2rem;
+            }
+            input:focus{
+                box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+            }
+            input[type='submit']{
+                border-color: darkgray;
+                border:none;
+                background-color: #0071bd;
+                color:white;
+                font-weight:bold;
+                cursor:pointer;
+                font-size: 1rem;
+            }
+            form>div{
+                width: 50%;
+                margin:auto;
+            }
+            #users-section{
+                width: 80%;
+                margin:auto;
+                margin-top: 40px;
+                margin-bottom: 20px;
+                padding:25px;
+                display: grid;
+                grid-template-columns: repeat(4,1fr);
+                gap:20px;
+                font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                line-height: 14px;
+            }
+            #users-section>div{
+                padding:25px 20px;
+                border-radius: 10px;
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+            }
+            #users-section>div>p{
+                text-transform: capitalize;
+            }
+            img{
+                width: 120px;
+                height: 120px;
+            }
+            .status-section{
+                display:flex; 
+                gap:10px; 
+                height:30px; 
+                margin-top:-10px;
+                align-items: center;
+            }
+            .status{
+                height:15px;
+                width: 15px;
+                border-radius: 50%;
+            }
+        </style>
+    </head>
+    <body>
+        <h1 style="margin: 2rem 0;"><center>Checking CRUD OPERATION</center></h1>
+        <form onsubmit="handleSubmit(event)">
+            <input type="email" id="email" name="email" placeholder="Enter your email" ><br/><br/>
+            <input type="text" id="mobile" name="mobile" placeholder="mobile" ><br/><br/>
+            <div><input type="submit" value="SUBMIT"></div>
+        </form>
+        <div id="users-section">
+        </div>
+    </body>
+    <script>
+        // login 
+        function handleSubmit(event){
+            event.preventDefault();
+            let email = document.getElementById("email").value;
+            let mobile = document.getElementById("mobile").value;
+            
+            if(!email || !mobile){
+                alert("Please fill all the details!")
+            }else{
+                let data = {email, mobile};
+                fetch("http://localhost:5005/user/login",{
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                })
+                .then((res)=>{return res.json()})
+                .then((res)=>{
+                    let token = res.token;
+                    localStorage.setItem("testing_token", token);
+                    getUser();
+                })
+                .catch((err)=>console.log(err))
+            }
+        }
+
+        // get user list
+        function getUser(){
+            let token = localStorage.getItem("testing_token");
+            fetch("http://localhost:5005/user/getAllUser",{
+                method:"GET",
+                headers:{
+                    "Authorization":`Bearer ${token}`
+                }
+            })
+            .then((resp)=>{return resp.json()})
+            .then((res)=>{console.log(res);
+             appendDiv(res)})
+            .catch((err)=>console.log(err))
+        }
+        
+
+        // append div
+        function appendDiv(data){
+            data.map((ele)=>{
+                let parent = document.getElementById("users-section");
+                let mDiv = document.createElement("div");
+                let img = document.createElement('img');
+                img.src = '../images.jpg'
+                let div1 = document.createElement('div');
+                    let p1 = document.createElement('p');
+                    p1.innerText = ele.firstname;
+                    let p2 = document.createElement('p');
+                    p2.innerText = ele.email;
+                    let p3 = document.createElement('p');
+                    p3.innerText = ele.mobile;
+                    let p4 = document.createElement('p');
+                    p4.innerText = ele.gender;
+                div1.append(p1,p2,p3,p4);
+                let div2 = document.createElement('div');
+                div2.setAttribute("class","status-section");
+                    let p5 = document.createElement('p');
+                    p5.setAttribute("class","status");
+                    p5.style.backgroundColor = `${ele.status==="Active"?"red":"green"}`;
+                    let p6 = document.createElement('p');
+                    p6.innerText = ele.status;
+                div2.append(p5, p6);
+                mDiv.append(img, div1, div2);
+                parent.appendChild(mDiv)
+            })
+        }
+    </script>
+</html>

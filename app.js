@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 require("./db/connection")
 const cors = require("cors");
-const router = require("./Routes/router")
+const router = require("./Routes/userRouter")
 const PORT = 5005;
 
 
@@ -14,7 +14,7 @@ app.use(router);
 //  getresponse 
 // app.get("/", (req, res)=>{
 //     res.status(200).json("server start");
-// })
+// }) 
 
 //  server start
 app.listen(PORT, ()=>{
