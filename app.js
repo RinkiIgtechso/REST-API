@@ -14,9 +14,9 @@ app.use(userRouts);
 app.use(eventRouts);
 
 //  getresponse 
-// app.get("/", (req, res)=>{
-//     res.status(200).json("server start");
-// }) 
+app.get("/", (req, res)=>{
+    res.status(200).json("server start");
+}) 
 
 //  server start
 app.listen(PORT, ()=>{
