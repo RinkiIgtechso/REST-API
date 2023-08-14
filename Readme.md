@@ -13,7 +13,7 @@
 - > UPDATE <code>https://rest-api-testing-igtechso.onrender.com/user/updateuser/:id</code>
 - > DELETE <code>https://rest-api-testing-igtechso.onrender.com/user/deleteuser/:id</code>
 
-## Else you can check it on live: (For event)
+## (For event)
 
 - > GET <code>https://rest-api-testing-igtechso.onrender.com/events/all</code>
 - > GET_SINGLE_USER <code>https://rest-api-testing-igtechso.onrender.com/events/singleEvent/:id</code>
