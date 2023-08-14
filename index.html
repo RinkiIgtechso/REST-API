@@ -50,7 +50,7 @@
                 border-radius: 10px;
                 box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
             }
-            #users-section>div>p{
+            #users-section>div>div>p:first-child{
                 text-transform: capitalize;
             }
             img{
@@ -117,11 +117,10 @@
                 }
             })
             .then((resp)=>{return resp.json()})
-            .then((res)=>{console.log(res);
+            .then((res)=>{
              appendDiv(res)})
             .catch((err)=>console.log(err))
         }
-        
 
         // append div
         function appendDiv(data){
@@ -144,7 +143,7 @@
                 div2.setAttribute("class","status-section");
                     let p5 = document.createElement('p');
                     p5.setAttribute("class","status");
-                    p5.style.backgroundColor = `${ele.status==="Active"?"red":"green"}`;
+                    p5.style.backgroundColor = `${ele.status==="Active"?"green":"red"}`;
                     let p6 = document.createElement('p');
                     p6.innerText = ele.status;
                 div2.append(p5, p6);

@@ -21,12 +21,11 @@ exports.userpost = async(req, res)=>{
             res.status(400).json({error:"This user already exist in our database"})
         }else{
             const dateCreate = moment(new Date()).format("YYYY MM DD hh:mm:ss");
-
             const userData = new users({firstname, email, mobile, gender, status, datecreated: dateCreate});
 
             await userData.save();
             res.status(200).json(userData);
-        }
+        } 
     }catch(err){
         console.log(err);
         res.status(400).json(err)
@@ -106,7 +105,6 @@ exports.deleteUser = async (req, res) => {
 
     try{
         const deleteUserData = await users.findByIdAndDelete({_id:id});
-
         res.status(200).json(deleteUserData);
     }catch(error){
         res.status(400).json(err);
