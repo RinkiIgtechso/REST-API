@@ -2,7 +2,9 @@
 
 - First clone this repo
 - Install all dependencies 
-- Add .env file with ``` DATABASE = database url ```
+- Add .env file with
+ ``` DATABASE = database url ```
+ ``` JWT_SECRET_KEY = '' ```
 - Now run the app by ``` nodemon app.js ```
 
 ## Else you can check it on live: (For user)

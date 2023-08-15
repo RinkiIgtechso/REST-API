@@ -89,7 +89,7 @@
             let mobile = document.getElementById("mobile").value;
             
             if(!email || !mobile){
-                alert("Please fill all the details!")
+                alert("Please fill all the details!");
             }else{
                 let data = {email, mobile};
                 fetch("http://localhost:5005/user/login",{
