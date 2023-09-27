@@ -30,7 +30,7 @@ const options = {
         ],
         servers: [
             {
-                url:  "http://localhost:5005"
+                url:  "https://rest-api-testing-igtechso.onrender.com/"
             }
         ],
         tags:[

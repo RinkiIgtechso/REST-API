@@ -323,8 +323,6 @@ app.get("/", (req, res)=>{
  *              description: Created successfully
  */
 
-
-
 /**
  * @swagger
  * /events/deleteEvent/{id}:
