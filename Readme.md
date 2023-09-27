@@ -6,6 +6,7 @@
  ``` DATABASE = database url ```
  ``` JWT_SECRET_KEY = '' ```
 - Now run the app by ``` nodemon app.js ```
+- You can check all about this api by going this link <code> https://rest-api-testing-igtechso.onrender.com/api-doc/ </code>
 
 ## Else you can check it on live: (For user)
 
