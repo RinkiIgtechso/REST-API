@@ -8,5 +8,5 @@ eventRouter.get("/events/singleEvent/:id", controllers.singleEvent);
 eventRouter.post("/events/createEvent", controllers.postEvents);
 eventRouter.delete("/events/deleteEvent/:id", controllers.deleteEvents);
 eventRouter.put("/events/update/:id", controllers.updateEvents);
-
+ 
 module.exports = eventRouter;

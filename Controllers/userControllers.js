@@ -27,14 +27,13 @@ exports.userpost = async(req, res)=>{
             res.status(200).json(userData);
         } 
     }catch(err){
-        console.log(err);
         res.status(400).json(err)
     }
 }
 
 // login user
 exports.userlogin = async(req, res) => {
-
+    
     const {email, mobile} = req.body;
     const token = jwt.sign({ email, mobile }, JWT_SECRET_KEY, {
         expiresIn: "30d",
@@ -50,7 +49,6 @@ exports.userlogin = async(req, res) => {
         }
     }catch(error){
         res.status(400).json(error);
-        console.log(error)
     }
 }
 
@@ -73,7 +71,6 @@ exports.getUsers = async (req, res)=>{
         // .skip(skip)
         // const pageCount = Math.ceil(count/ITEM_PER_PAGE); // 8/4 = 2
         res.status(200).json(userData);
-        
         // res.status(200).json({
         //     pagination:{
         //         count: pageCount
@@ -82,7 +79,6 @@ exports.getUsers = async (req, res)=>{
         // });
     }catch(err){
         res.status(400).json(err);
-        console.log("catch block error");
     }
 }
 
@@ -95,7 +91,6 @@ exports.getSingleuser = async(req, res) => {
         res.status(200).json(singleuserData);
     }catch(error){
         res.status(400).json(err);
-        console.log("catch block error");
     }
 }
 
@@ -108,7 +103,6 @@ exports.deleteUser = async (req, res) => {
         res.status(200).json(deleteUserData);
     }catch(error){
         res.status(400).json(err);
-        console.log("catch block error");
     }
 }
 
@@ -119,15 +113,11 @@ exports.updateUser = async (req, res) => {
 
     try{
         const dateUpdate = moment(new Date()).format("YYYY-MM-DD hh:mm:ss");
-
         const updateUserdata = await users.findByIdAndUpdate({_id:id},{firstname, email, mobile, gender, status, datecreated: dateUpdate},{new: true});
-
         await updateUserdata.save();
-
         res.status(200).json(updateUserdata);
     }catch(error){
         res.status(400).json(error);
-        console.log("catch block error");
     }
 }
 

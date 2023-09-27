@@ -3,7 +3,7 @@ const dotenv = require("dotenv");
 const events = require("../models/eventSchema");
 const moment = require("moment");
 const jwt = require("jsonwebtoken");
-
+ 
 dotenv.config();
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY;
 
@@ -21,7 +21,6 @@ exports.getEvents =  async (req, res) =>{
         const event = await events.find();
         res.status(200).json(event);
     }catch(err){
-        console.log(err);
         res.status(400).json(err)
     }
 }
@@ -41,7 +40,6 @@ exports.singleEvent = async (req, res) => {
         const singleEventData = await events.findOne({_id:id});
         res.status(200).json(singleEventData);
     }catch(err){
-        console.log(err);
         res.status(400).json(err);
     }
 }
@@ -65,7 +63,6 @@ exports.postEvents = async (req, res) =>{
         await eventData.save();
         res.status(200).json(eventData);
     }catch(err){
-        console.log(err);
         res.status(400).json(err)
     }
 }
@@ -88,7 +85,6 @@ exports.updateEvents = async (req, res)  =>{
         await updateEvent.save();
         res.status(200).json({msg:"Updated event successfuly",data:updateEvent});
     }catch(err){
-        console.log(err);
         res.status(400).json(err);
     }
 }
@@ -108,7 +104,6 @@ exports.deleteEvents = async (req, res) =>{
         const deleteEvent = await events.findByIdAndDelete({_id:id});
         res.status(200).json({msg:"successfully deleted",data:deleteEvent});
     }catch(error){
-        console.log(error);
         res.status(400).json(error);
     }
 }
